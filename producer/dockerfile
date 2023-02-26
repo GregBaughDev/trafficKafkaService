@@ -1,0 +1,5 @@
+FROM openjdk:18
+WORKDIR /src
+COPY target/traffic-producer-jar-with-dependencies.jar /src
+EXPOSE 8080
+CMD ["java", "-jar", "traffic-producer-jar-with-dependencies.jar"]

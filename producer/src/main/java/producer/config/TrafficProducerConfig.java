@@ -3,11 +3,14 @@ package producer.config;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
+import producer.TrafficInfo;
 
 import java.util.Properties;
 
 public class TrafficProducerConfig {
-    private final String bootstrapServers = "localhost:9092";
+    // Issue is here
+     private final String bootstrapServers = "localhost:9092";
+//    private final String bootstrapServers = "PLAINTEXT://kafka:29092";
 
     private Properties producerConfig() {
         final Properties properties = new Properties();
@@ -17,7 +20,7 @@ public class TrafficProducerConfig {
         return properties;
     }
 
-    KafkaProducer<String, TrafficInfoSerializer> producer() {
+    public KafkaProducer<String, TrafficInfo> producer() {
         return new KafkaProducer<>(producerConfig());
     }
 }

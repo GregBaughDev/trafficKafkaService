@@ -1,5 +1,7 @@
 package producer;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public record TrafficInfo(
         // Add @JsonProperty to deserializer
         String closedRoadName,
@@ -14,4 +16,4 @@ public record TrafficInfo(
         String start,
         String end,
         String description
-) {}
+        ) {}

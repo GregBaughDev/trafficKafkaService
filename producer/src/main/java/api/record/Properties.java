@@ -11,5 +11,4 @@ public record Properties(
         Impact impact,
         Duration duration,
         String description
-) {
-}
+) {}

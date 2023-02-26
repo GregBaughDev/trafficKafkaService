@@ -18,7 +18,7 @@ public class TrafficAPI {
         return HttpRequest
                 .newBuilder()
                 .uri(URI.create(vicRoadsUrl))
-                .header("Ocp-Apim-Subscription-Key", "API KEY")
+                .header("Ocp-Apim-Subscription-Key", "eeceeee57850440084e17c7f24011655")
                 .GET()
                 .build();
     }
