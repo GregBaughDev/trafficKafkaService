@@ -8,9 +8,8 @@ import producer.TrafficInfo;
 import java.util.Properties;
 
 public class TrafficProducerConfig {
-    // Issue is here
-     private final String bootstrapServers = "localhost:9092";
-//    private final String bootstrapServers = "PLAINTEXT://kafka:29092";
+//    private final String bootstrapServers = "localhost:29092";
+    private final String bootstrapServers = "kafka:9092";
 
     private Properties producerConfig() {
         final Properties properties = new Properties();

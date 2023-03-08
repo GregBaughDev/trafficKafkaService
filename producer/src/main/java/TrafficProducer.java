@@ -4,6 +4,8 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import producer.TrafficInfo;
 import producer.config.TrafficProducerConfig;
 
+import java.util.concurrent.TimeUnit;
+
 public class TrafficProducer {
     public static void main(String[] args) {
         System.out.println("******Traffic producer******");
@@ -33,15 +35,14 @@ public class TrafficProducer {
                     )
                     );
                     producerConfig.producer().send(trafficProducer);
+                    System.out.println("Message: " + trafficProducer);
                     System.out.println("***Message sent***");
                 });
                 producerConfig.producer().flush();
-                Thread.sleep(60000);
+                TimeUnit.MINUTES.sleep(1);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 }
-// TO DO: REALISED THAT ONLY ONE MESSAGE IS COMING THROUGH IN DOCKER
-// PRINT OUT THE MESSAGE TO SEE IF THERE'S SOME ISSUE IN THE DOCKER APP
