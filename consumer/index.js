@@ -2,7 +2,7 @@ import { Kafka } from 'kafkajs'
 
 const kafka = new Kafka({
   clientId: 'traffic_info',
-  brokers: ['localhost:29092']
+  brokers: ['kafka:9092']
 })
 
 const consumer = kafka.consumer({ groupId: 'traffic_info' })
