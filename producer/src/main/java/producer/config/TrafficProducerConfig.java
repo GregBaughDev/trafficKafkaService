@@ -8,7 +8,6 @@ import producer.TrafficInfo;
 import java.util.Properties;
 
 public class TrafficProducerConfig {
-//    private final String bootstrapServers = "localhost:29092";
     private final String bootstrapServers = "kafka:9092";
 
     private Properties producerConfig() {

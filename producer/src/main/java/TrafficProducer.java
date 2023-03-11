@@ -20,7 +20,7 @@ public class TrafficProducer {
                 response.features().stream().limit(10).forEach(feature -> {
                     ProducerRecord<String, TrafficInfo> trafficProducer = new ProducerRecord<>(
                             "traffic_info", new TrafficInfo(
-                            feature.properties().closedRoadName() + ":::::::Greg update&",
+                            feature.properties().closedRoadName(),
                             feature.properties().startIntersectionRoadName(),
                             feature.properties().localGovernmentArea(),
                             feature.properties().eventType(),
