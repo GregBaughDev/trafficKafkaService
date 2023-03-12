@@ -1,23 +1,16 @@
 services:
-#  Define services
-#  How do I run different files?
-#  Maybe run commands -> i.e cd into the folder, run the commands to start up
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
-    ports:
-      - 22181:2181
 
   kafka:
     image: confluentinc/cp-kafka:latest
     container_name: kafka
     depends_on:
       - zookeeper
-    ports:
-      - 29092:29092
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -27,16 +20,13 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_CREATE_TOPICS: "traffic_info:1:1"
 
-    producer:
-      depends_on:
-        - kafka
-      build: producer/dockerfile
+  producer:
+    depends_on:
+      - kafka
+    build: ./producer
 
-    consumer:
-      depends_on:
-        - kafka
-        - producer
-      build: consumer/dockerfile
-
-networks:
-  traffic_info_network:
+  consumer:
+    depends_on:
+      - kafka
+      - producer
+    build: ./consumer
