@@ -26,6 +26,8 @@ services:
     build: ./producer
 
   consumer:
+    ports:
+      - "8282:8282"
     depends_on:
       - kafka
       - producer
