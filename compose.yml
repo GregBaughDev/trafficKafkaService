@@ -32,3 +32,10 @@ services:
       - kafka
       - producer
     build: ./consumer
+
+  redis:
+    ports:
+      - "6379:6379"
+    depends_on:
+      - consumer
+    build: ./redis
