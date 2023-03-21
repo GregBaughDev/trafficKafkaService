@@ -25,7 +25,7 @@ const kafkaRun = async () => {
   await consumer.subscribe({ topic: 'traffic_info', fromBeginning: true })
 
   await consumer.run({
-    eachMessage: async ({ _, __, message }) => {
+    eachMessage: async ({ message }) => {
       console.log({
         value: message.value.toString(),
       })
