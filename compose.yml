@@ -39,3 +39,10 @@ services:
     depends_on:
       - consumer
     build: ./redis
+
+  server:
+    ports:
+      - "8585:8585"
+    depends_on:
+      - redis
+    build: ./server
