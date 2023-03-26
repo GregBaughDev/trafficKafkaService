@@ -59,12 +59,10 @@ closeModalLink.addEventListener('click', () => {
   trafficDiv.classList.remove('hide')
   modal.classList.add('hide')
   modal.classList.remove('modal')
-})
+});
 
-const getDataAndDisplay = async () => {
+(async () => {
   const trafficInfoData = await fetch('http://localhost:8585/traffic-info')
   const result = await trafficInfoData.json()
   result.result.map((elem) => trafficContainer(JSON.parse(elem), trafficDiv))
-}
-
-getDataAndDisplay()
+})();
