@@ -14,15 +14,16 @@ const trafficContainer = (info, parentElem) => {
   parent.className = "container"
 
   h3.textContent = `Road: ${info.closedRoadName}`
-  h4.textContent = `Intersection road name: ${info.startIntersectionRoadName}`
+  h4.textContent = `Intersection road name: ${info.intersectionRoadName}`
   h5.textContent = `Area: ${info.localGovernmentArea}`
-  startDate.textContent = `Start: ${info.duration.start}`
-  endDate.textContent = `End: ${info.duration.end}`
+  startDate.textContent = `Start: ${info.start}`
+  endDate.textContent = `End: ${info.end}`
 
   const rightDiv = document.createElement("div")
   const moreInfo = document.createElement("a")
   moreInfo.textContent = "More Info"
   moreInfo.addEventListener('click', () => {
+    populateModal(info)
     trafficDiv.classList.add('hide')
     modal.classList.remove('hide')
     modal.classList.add('modal')
@@ -38,34 +39,32 @@ const trafficContainer = (info, parentElem) => {
   parent.append(rightDiv)
   parentElem.append(parent)
 }
-// Test
-const infotest = {
-  closedRoadName: "Rainbow Road",
-  startIntersectionRoadName: "Town Lane",
-  localGovernmentArea: "Port Phillip",
-  duration: {
-    start: 'start',
-    end: 'end'
-  }
+
+const populateModal = (info) => {
+  document.getElementById('closedRoad').textContent = `Closed road: ${info.closedRoadName}`
+  document.getElementById('intersectionStart').textContent = `Intersection: ${info.intersectionRoadName}`
+  document.getElementById('govtArea').textContent = `Area: ${info.localGovernmentArea}`
+  document.getElementById('evtType').textContent = `Event type: ${info.eventType}`
+  document.getElementById('evtDueTo').textContent = `Event due to: ${info.eventDueTo}`
+  document.getElementById('direction').textContent = `Direction: ${info.direction}`
+  document.getElementById('impact').textContent = `Impact: ${info.impact}`
+  document.getElementById('delay').textContent = `Delay: ${info.delay}`
+  document.getElementById('speedLimit').textContent = `Speed limit: ${info.speedLimit}-Km`
+  document.getElementById('start').textContent = `Start: ${info.start}`
+  document.getElementById('end').textContent = `End: ${info.end}`
+  document.getElementById('description').textContent = `Description: ${info.description}`
 }
-
-const infotest2 = {
-  closedRoadName: "Rainbow Road2",
-  startIntersectionRoadName: "Town Lanesx2",
-  localGovernmentArea: "Port Phillip2",
-  duration: {
-    start: 'start',
-    end: 'end'
-  }
-}
-
-const data = [infotest, infotest2]
-// End test data
-
-data.map((elem) => trafficContainer(elem, trafficDiv))
 
 closeModalLink.addEventListener('click', () => {
   trafficDiv.classList.remove('hide')
   modal.classList.add('hide')
   modal.classList.remove('modal')
 })
+
+const getDataAndDisplay = async () => {
+  const trafficInfoData = await fetch('http://localhost:8585/traffic-info')
+  const result = await trafficInfoData.json()
+  result.result.map((elem) => trafficContainer(JSON.parse(elem), trafficDiv))
+}
+
+getDataAndDisplay()
