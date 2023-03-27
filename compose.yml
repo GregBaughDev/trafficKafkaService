@@ -46,3 +46,8 @@ services:
     depends_on:
       - redis
     build: ./server
+
+  client:
+    depends_on:
+      - server
+    build: ./client
