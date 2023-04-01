@@ -39,7 +39,7 @@ public class TrafficProducer {
                     System.out.println("***Message sent***");
                 });
                 producerConfig.producer().flush();
-                TimeUnit.MINUTES.sleep(1);
+                TimeUnit.MINUTES.sleep(10);
             } catch (Exception e) {
                 e.printStackTrace();
             }
