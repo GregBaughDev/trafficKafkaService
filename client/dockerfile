@@ -1,8 +1,0 @@
-from node:19
-WORKDIR /src
-COPY ["index.js", "main.js", "index.html", "package.json", "package-lock.json", "styles.css", "/src"]
-RUN npm install
-CMD ["npm", "run", "start"]
-
-# Create linux file
-# update this to pull from ubuntu
